@@ -1,0 +1,14 @@
+{#- This file was generated with command ext-overallpageblocks:generate -#}
+{%- if marttiphpbb_overallpageblocks.items.navbar_header_quick_links_before -%}
+	{%- for item in marttiphpbb_overallpageblocks.items.navbar_header_quick_links_before -%}
+		<li data-last-responsive="true">
+			<a href="{{- item.link -}}" role="menuitem" aria-hidden="true">
+				{%- if item.include is defined -%}
+					{%- include item.include with {'var': item.var, 'key': item.key} only -%}
+				{%- else -%}
+					{{- item.raw|raw -}}
+				{%- endif -%}
+			</a>
+		</li>
+	{%- endfor -%}
+{%- endif -%}

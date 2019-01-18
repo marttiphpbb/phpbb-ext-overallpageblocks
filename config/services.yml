@@ -1,0 +1,35 @@
+services:
+    marttiphpbb.overallpageblocks.console.generate:
+        class: marttiphpbb\overallpageblocks\console\generate
+        arguments:
+            - '@user'
+        tags:
+            - { name: console.command }
+
+    marttiphpbb.overallpageblocks.listener:
+        class: marttiphpbb\overallpageblocks\event\listener
+        arguments:
+            - '@marttiphpbb.overallpageblocks.dispatcher'
+            - '@marttiphpbb.overallpageblocks.store'
+            - '@marttiphpbb.overallpageblocks.acp'
+        tags:
+            - { name: event.listener }
+
+    marttiphpbb.overallpageblocks.dispatcher:
+        class: marttiphpbb\overallpageblocks\service\dispatcher
+        arguments:
+            - '@dispatcher'
+            - '@marttiphpbb.overallpageblocks.store'
+
+    marttiphpbb.overallpageblocks.store:
+        class: marttiphpbb\overallpageblocks\service\store
+        arguments:
+            - '@config_text'
+            - '@cache.driver'
+
+    marttiphpbb.overallpageblocks.acp:
+        class: marttiphpbb\overallpageblocks\service\acp
+        arguments:
+            - '@marttiphpbb.overallpageblocks.store'
+            - '@request'
+            - '@language'

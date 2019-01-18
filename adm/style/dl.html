@@ -1,0 +1,15 @@
+{# embed this file with {'name': 'your_menu_item_key'} #}
+<dl>
+	<dt>
+		<label for="marttiphpbb_overallpageblocks_{{- name -}}">
+			{%- block label -%}
+				{{- lang('ACP_MARTTIPHPBB_OVERALLPAGEBLOCKS_ITEM_LOCATIONS') -}}
+			{%- endblock -%}			
+		</label>
+		{%- block explain -%}{%- endblock -%}
+	</dt>
+	<dd>
+		{%- include '@marttiphpbb_overallpageblocks/include/select.html' with {'name': name} -%}
+	</dd>
+</dl>
+
