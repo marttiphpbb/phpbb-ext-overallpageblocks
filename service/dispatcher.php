@@ -15,7 +15,7 @@ class dispatcher
 {
 	protected $core_dispatcher;
 	protected $store;
-	protected $items = [];
+	protected $blocks = [];
 
 	public function __construct(core_dispatcher $core_dispatcher, store $store)
 	{
@@ -25,26 +25,26 @@ class dispatcher
 
 	public function trigger_event()
 	{
-		$items = [];
+		$blocks = [];
 
 		/**
-		 * To add your items
+		 * To add your blocks
 		 *
 		 * @event
-		 * @var array	items  push here your items
-		 * like this $items['vendor/extension']['item_key'] = $item;
-		 * where item is
-		 * $item = [
+		 * @var array	blocks  push here your blocks
+		 * like this $items['vendor/extension']['block_key'] = $block;
+		 * where block is
+		 * [
 		 * 		'include'	=> '@vendor_extension/your_include_file.html',
 		 * 		'var'		=> [],	// defaults to empty array
 		 * ];
 		 */
-		$vars = ['items'];
-		$result = $this->core_dispatcher->trigger_event('marttiphpbb.overallpageblocks.add_items', compact($vars));
+		$vars = ['blocks'];
+		$result = $this->core_dispatcher->trigger_event('marttiphpbb.overallpageblocks', compact($vars));
 
-		if (count($result['items']))
+		if (count($result['blocks']))
 		{
-			foreach ($result['items'] as $extension_name => $menu_ary)
+			foreach ($result['blocks'] as $extension_name => $menu_ary)
 			{
 				if (!$this->store->extension_is_present($extension_name))
 				{
@@ -64,21 +64,21 @@ class dispatcher
 
 					foreach ($template_events as $template_event)
 					{
-						if (isset($this->items[$template_event]))
+						if (isset($this->blocks[$template_event]))
 						{
-							$this->items[$template_event][] = $data;
+							$this->blocks[$template_event][] = $data;
 							continue;
 						}
 
-						$this->items[$template_event] = [$data];
+						$this->blocks[$template_event] = [$data];
 					}
 				}
 			}
 		}
 	}
 
-	public function get_items():array
+	public function get_blocks():array
 	{
-		return $this->items;
+		return $this->blocks;
 	}
 }

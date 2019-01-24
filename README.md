@@ -1,7 +1,5 @@
 # phpBB Extension - marttiphpbb Overall Page Blocks (helper ext)
 
-## This extension is only in the stage of initial development
-
 This phpBB extension provides configurable template inserts for other extensions.
 
 [Topic on phpBB.com](https://www.phpbb.com/community/viewtopic.php?f=456&t=)
