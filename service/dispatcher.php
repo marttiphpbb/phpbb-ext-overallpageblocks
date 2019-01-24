@@ -32,10 +32,10 @@ class dispatcher
 		 *
 		 * @event
 		 * @var array	blocks  push here your blocks
-		 * like this $items['vendor/extension']['block_key'] = $block;
-		 * where block is
+		 * like this $blocks['vendor/extension']['block_key'] = $block;
+		 * where $block is
 		 * [
-		 * 		'include'	=> '@vendor_extension/your_include_file.html',
+		 * 		'include'	=> '@yourvendor_yourextension/your_include_file.html',
 		 * 		'var'		=> [],	// defaults to empty array
 		 * ];
 		 */

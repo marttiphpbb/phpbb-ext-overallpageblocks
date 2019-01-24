@@ -20,12 +20,12 @@ use marttiphpbb\overallpageblocks\util\cnst;
 class generate extends command
 {
 	const PATH = __DIR__ . '/../styles/prosilver/template/event/';
-	const TPL_VAR = 'marttiphpbb_overallpageblocks.items';
+	const TPL_VAR = 'marttiphpbb_overallpageblocks.blocks';
 	const TPL = <<<'EOT'
 {#- This file was generated with command ext-overallpageblocks:generate -#}
 {%- if %var%.%name% -%}
-	{%- for item in %var%.%name% -%}
-		{%- include item.include with {'var': item.var, 'key': item.key} only -%}
+	{%- for b in %var%.%name% -%}
+		{%- include b.include with {'var': b.var, 'key': b.key} only -%}
 	{%- endfor -%}
 {%- endif -%}
 EOT;

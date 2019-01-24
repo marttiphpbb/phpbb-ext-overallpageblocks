@@ -1,0 +1,6 @@
+{#- This file was generated with command ext-overallpageblocks:generate -#}
+{%- if marttiphpbb_overallpageblocks.blocks.overall_footer_page_body_after -%}
+	{%- for b in marttiphpbb_overallpageblocks.blocks.overall_footer_page_body_after -%}
+		{%- include b.include with {'var': b.var, 'key': b.key} only -%}
+	{%- endfor -%}
+{%- endif -%}

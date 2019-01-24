@@ -61,7 +61,7 @@ class listener implements EventSubscriberInterface
 	{
 		$context = $event['context'];
 		$context['marttiphpbb_overallpageblocks'] = [
-			'items'		=> $this->dispatcher->get_items(),
+			'blocks'	=> $this->dispatcher->get_blocks(),
 			'acp'		=> $this->acp->get_selected(),
 		];
 		$event['context'] = $context;
