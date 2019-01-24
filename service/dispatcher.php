@@ -44,14 +44,14 @@ class dispatcher
 
 		if (count($result['blocks']))
 		{
-			foreach ($result['blocks'] as $extension_name => $menu_ary)
+			foreach ($result['blocks'] as $extension_name => $block_ary)
 			{
 				if (!$this->store->extension_is_present($extension_name))
 				{
 					continue;
 				}
 
-				foreach ($menu_ary as $key => $data)
+				foreach ($block_ary as $key => $data)
 				{
 					$template_events = $this->store->get($extension_name, $key);
 
@@ -62,8 +62,10 @@ class dispatcher
 
 					$data['key'] = $key;
 
-					foreach ($template_events as $template_event)
+					foreach ($template_events as $template_event => $priority)
 					{
+						$data['priority'] = $priority;
+
 						if (isset($this->blocks[$template_event]))
 						{
 							$this->blocks[$template_event][] = $data;
@@ -73,6 +75,13 @@ class dispatcher
 						$this->blocks[$template_event] = [$data];
 					}
 				}
+			}
+
+			foreach ($this->blocks as &$block)
+			{
+				usort($block, function($a, $b){
+					return $a['priority'] < $b['priority'] ? 1 : -1;
+				});
 			}
 		}
 	}

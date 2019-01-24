@@ -27,7 +27,7 @@ class store
 		$this->cache = $cache;
 	}
 
-	private function load()
+	private function load():void
 	{
 		if ($this->blocks)
 		{
@@ -45,16 +45,10 @@ class store
 		$this->cache->put(cnst::CACHE_ID, $this->blocks);
 	}
 
-	private function write()
+	private function write():void
 	{
 		$this->config_text->set(cnst::ID, serialize($this->blocks));
 		$this->cache->put(cnst::CACHE_ID, $this->blocks);
-	}
-
-	public function set_all(array $blocks)
-	{
-		$this->blocks = $blocks;
-		$this->write();
 	}
 
 	public function get_all():array
@@ -69,7 +63,11 @@ class store
 		return $this->blocks[$extension_name][$key] ?? [];
 	}
 
-	public function set(string $extension_name, string $key, array $template_events)
+	public function set(
+		string $extension_name,
+		string $key,
+		array $template_events
+	):void
 	{
 		$this->load();
 		$this->blocks[$extension_name][$key] = $template_events;
@@ -80,6 +78,13 @@ class store
 	{
 		$this->load();
 		unset($this->blocks[$extension_name]);
+		$this->write();
+	}
+
+	public function remove_key(string $extension_name, string $key):void
+	{
+		$this->load();
+		unset($this->items[$extension_name][$key]);
 		$this->write();
 	}
 
