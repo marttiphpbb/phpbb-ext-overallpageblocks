@@ -28,41 +28,32 @@ class dispatcher
 		$items = [];
 
 		/**
-		 * To set menu items
+		 * To add your items
 		 *
 		 * @event
 		 * @var array	items  push here your items
-		 * like this $items['vendor/extension']['menu_key'] = $item;
+		 * like this $items['vendor/extension']['item_key'] = $item;
 		 * where item is
-		 * 1.) $item = [
-		 * 		'link'		=> '/path/to/your/page',
+		 * $item = [
 		 * 		'include'	=> '@vendor_extension/your_include_file.html',
-		 * 		'var'		=> [],
+		 * 		'var'		=> [],	// defaults to empty array
 		 * ];
-		 * "var" is an array or string passed as "var" to
-		 * your include file. Also "key" is available in your included file.
-		 *
-		 * 2.) $item = [
-		 * 		'link'		=> '/path/to/your/page',
-		 * 		'raw'		=> $raw,
-		 * ];
-		 * "raw"  is the raw content of your menu link.
 		 */
 		$vars = ['items'];
 		$result = $this->core_dispatcher->trigger_event('marttiphpbb.overallpageblocks.add_items', compact($vars));
 
 		if (count($result['items']))
 		{
-			foreach ($result['items'] as $ext_name => $menu_ary)
+			foreach ($result['items'] as $extension_name => $menu_ary)
 			{
-				if (!$this->store->ext_is_present($ext_name))
+				if (!$this->store->extension_is_present($extension_name))
 				{
 					continue;
 				}
 
 				foreach ($menu_ary as $key => $data)
 				{
-					$template_events = $this->store->get($ext_name, $key);
+					$template_events = $this->store->get($extension_name, $key);
 
 					if (!count($template_events))
 					{

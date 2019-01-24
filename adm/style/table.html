@@ -1,0 +1,27 @@
+<table class="table1 responsive zebra-table show-header">
+	<thead>
+		<tr>
+			<th>
+				{{- lang('ACP_MARTTIPHPBB_OVERALLPAGEBLOCKS_ENABLE') -}}
+			</th>
+			<th>
+				{{- lang('ACP_MARTTIPHPBB_OVERALLPAGEBLOCKS_PRIORITY') -}}
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+	{%- for item in constant('marttiphpbb\\overallpageblocks\\util\\cnst::ITEMS') -%}
+		<tr>
+			<td>
+				<label for="marttiphpbb_overallpageblocks_{{- name -}}_{{- item -}}">
+				<input type="checkbox" id="marttiphpbb_overallpageblocks_{{- name -}}_{{- item -}}" name="marttiphpbb_overallpageblocks_en[{{- name -}}][{{- item -}}]"{%- if marttiphpbb_overallpageblocks.acp[name][item] is defined %} checked="checked"{%- endif -%}>
+				&nbsp;{{- lang('ACP_MARTTIPHPBB_OVERALLPAGEBLOCKS_'~(item|upper)) -}}
+				</label>
+			</td>
+			<td>
+				<input type="number" name="marttiphpbb_overallpageblocks_priority[{{- name -}}][{{- item -}}]" value="{{- marttiphpbb_overallpageblocks.acp[name][item] ?? 0 -}}">
+			</td>
+		</tr>
+	{%- endfor -%}
+	</tbody>
+</table>

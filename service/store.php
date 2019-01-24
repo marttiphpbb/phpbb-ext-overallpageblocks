@@ -73,7 +73,7 @@ class store
 		$this->write();
 	}
 
-	public function remove_extension(string $extension_name)
+	public function remove_extension(string $extension_name):void
 	{
 		$this->load();
 		unset($this->items[$extension_name]);
@@ -86,7 +86,7 @@ class store
 		return array_keys($this->items);
 	}
 
-	public function ext_is_present(string $extension_name)
+	public function extension_is_present(string $extension_name):boolean
 	{
 		$this->load();
 		return isset($this->items[$extension_name]);

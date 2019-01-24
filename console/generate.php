@@ -21,20 +21,11 @@ class generate extends command
 {
 	const PATH = __DIR__ . '/../styles/prosilver/template/event/';
 	const TPL_VAR = 'marttiphpbb_overallpageblocks.items';
-	const TPL_CLASS_FOOTER = ' class="rightside"';
 	const TPL = <<<'EOT'
 {#- This file was generated with command ext-overallpageblocks:generate -#}
 {%- if %var%.%name% -%}
 	{%- for item in %var%.%name% -%}
-		<li%class% data-last-responsive="true">
-			<a href="{{- item.link -}}" role="menuitem" aria-hidden="true">
-				{%- if item.include is defined -%}
-					{%- include item.include with {'var': item.var, 'key': item.key} only -%}
-				{%- else -%}
-					{{- item.raw|raw -}}
-				{%- endif -%}
-			</a>
-		</li>
+		{%- include item.include with {'var': item.var, 'key': item.key} only -%}
 	{%- endfor -%}
 {%- endif -%}
 EOT;
@@ -68,9 +59,8 @@ EOT;
 
 		foreach (cnst::ITEMS as $name)
 		{
-			$class = strpos($name, 'overall_footer_') === 0 ? self::TPL_CLASS_FOOTER : '';
-			$search = ['%name%', '%var%', '%class%'];
-			$replace = [$name, self::TPL_VAR, $class];
+			$search = ['%name%', '%var%'];
+			$replace = [$name, self::TPL_VAR];
 			$content = str_replace($search, $replace, self::TPL);
 
 			file_put_contents(self::PATH . $name . '.html', $content);
