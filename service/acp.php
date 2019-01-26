@@ -20,7 +20,11 @@ class acp
 	protected $language;
 	protected $selected = [];
 
-	public function __construct(store $store, request $request, language $language)
+	public function __construct(
+		store $store,
+		request $request,
+		language $language
+	)
 	{
 		$this->store = $store;
 		$this->request = $request;
@@ -55,7 +59,6 @@ class acp
 
 		$this->store->set($extension_name, $key, $tpl_ary);
 	}
-
 
 	public function assign_to_template(string $extension_name):void
 	{

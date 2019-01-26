@@ -17,6 +17,7 @@ class store
 	protected $config_text;
 	protected $cache;
 	protected $template_events = [];
+	protected $transaction = false;
 
 	public function __construct(
 		config_text $config_text,
@@ -51,6 +52,17 @@ class store
 		$this->cache->put(cnst::CACHE_ID, $this->template_events);
 	}
 
+	public function transaction_start():void
+	{
+		$this->transaction = true;
+	}
+
+	public function transaction_end():void
+	{
+		$this->transaction = false;
+		$this->write();
+	}
+
 	public function get_all():array
 	{
 		$this->load();
@@ -71,21 +83,33 @@ class store
 	{
 		$this->load();
 		$this->template_events[$extension_name][$key] = $template_events;
-		$this->write();
+
+		if (!$this->transaction)
+		{
+			$this->write();
+		}
 	}
 
 	public function remove_extension(string $extension_name):void
 	{
 		$this->load();
 		unset($this->template_events[$extension_name]);
-		$this->write();
+
+		if (!$this->transaction)
+		{
+			$this->write();
+		}
 	}
 
 	public function remove_key(string $extension_name, string $key):void
 	{
 		$this->load();
 		unset($this->items[$extension_name][$key]);
-		$this->write();
+
+		if (!$this->transaction)
+		{
+			$this->write();
+		}
 	}
 
 	public function get_extensions():array
