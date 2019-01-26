@@ -16,7 +16,7 @@ class store
 {
 	protected $config_text;
 	protected $cache;
-	protected $blocks = [];
+	protected $template_events = [];
 
 	public function __construct(
 		config_text $config_text,
@@ -29,38 +29,38 @@ class store
 
 	private function load():void
 	{
-		if ($this->blocks)
+		if ($this->template_events)
 		{
 			return;
 		}
 
-		$this->blocks = $this->cache->get(cnst::CACHE_ID);
+		$this->template_events = $this->cache->get(cnst::CACHE_ID);
 
-		if ($this->blocks)
+		if ($this->template_events)
 		{
 			return;
 		}
 
-		$this->blocks = unserialize($this->config_text->get(cnst::ID));
-		$this->cache->put(cnst::CACHE_ID, $this->blocks);
+		$this->template_events = unserialize($this->config_text->get(cnst::ID));
+		$this->cache->put(cnst::CACHE_ID, $this->template_events);
 	}
 
 	private function write():void
 	{
-		$this->config_text->set(cnst::ID, serialize($this->blocks));
-		$this->cache->put(cnst::CACHE_ID, $this->blocks);
+		$this->config_text->set(cnst::ID, serialize($this->template_events));
+		$this->cache->put(cnst::CACHE_ID, $this->template_events);
 	}
 
 	public function get_all():array
 	{
 		$this->load();
-		return $this->blocks;
+		return $this->template_events;
 	}
 
 	public function get(string $extension_name, string $key):array
 	{
 		$this->load();
-		return $this->blocks[$extension_name][$key] ?? [];
+		return $this->template_events[$extension_name][$key] ?? [];
 	}
 
 	public function set(
@@ -70,14 +70,14 @@ class store
 	):void
 	{
 		$this->load();
-		$this->blocks[$extension_name][$key] = $template_events;
+		$this->template_events[$extension_name][$key] = $template_events;
 		$this->write();
 	}
 
 	public function remove_extension(string $extension_name):void
 	{
 		$this->load();
-		unset($this->blocks[$extension_name]);
+		unset($this->template_events[$extension_name]);
 		$this->write();
 	}
 
@@ -91,12 +91,12 @@ class store
 	public function get_extensions():array
 	{
 		$this->load();
-		return array_keys($this->blocks);
+		return array_keys($this->template_events);
 	}
 
-	public function extension_is_present(string $extension_name):boolean
+	public function extension_is_present(string $extension_name):bool
 	{
 		$this->load();
-		return isset($this->blocks[$extension_name]);
+		return isset($this->template_events[$extension_name]);
 	}
 }

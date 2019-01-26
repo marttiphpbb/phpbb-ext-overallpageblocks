@@ -25,21 +25,30 @@ class dispatcher
 
 	public function trigger_event()
 	{
+		$template_events = $this->store->get_all();
 		$blocks = [];
 
 		/**
 		 * To add your blocks
 		 *
 		 * @event
-		 * @var array	blocks  push here your blocks
-		 * like this $blocks['vendor/extension']['block_key'] = $block;
+		 * @var array blocks  			nested array to push your blocks
+		 * @var array template_events 	nested array to check if template_events are enabled.
+		 *
+		 * Format: $blocks['vendor/extension']['block_key'] = $block;
 		 * where $block is
 		 * [
 		 * 		'include'	=> '@yourvendor_yourextension/your_include_file.html',
 		 * 		'var'		=> [],	// defaults to empty array
 		 * ];
+		 *
+		 * Format $template_events['yourvendor/yourextension']['block_key'] = $tpl_ary
+		 * where $tpl_ary is
+		 * [
+		 * 		'template_event_name' =>  priority (integer)
+		 * ]
 		 */
-		$vars = ['blocks'];
+		$vars = ['blocks', 'template_events'];
 		$result = $this->core_dispatcher->trigger_event('marttiphpbb.overallpageblocks', compact($vars));
 
 		if (count($result['blocks']))
