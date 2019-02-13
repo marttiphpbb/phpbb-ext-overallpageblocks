@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Overall Page Blocks Extension for phpBB 3.2 (helper ext)",
 	"homepage": "https://github.com/marttiphpbb/phpbb-ext-overallpageblocks",
-	"version": "0.1.0",
-	"time": "2019-01-24",
+	"version": "0.2.0",
+	"time": "2019-02-13",
 	"keywords": ["phpbb", "extension", "menu", "links", "overallpageblocks"],
 	"license": "GPL-2.0",
 	"authors": [{

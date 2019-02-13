@@ -1,8 +1,14 @@
 # phpBB Extension - marttiphpbb Overall Page Blocks (helper ext)
 
-This phpBB extension provides configurable template inserts for other extensions.
+[Topic on phpBB.com](https://www.phpbb.com/community/viewtopic.php?f=456&t=2502601)
 
-[Topic on phpBB.com](https://www.phpbb.com/community/viewtopic.php?f=456&t=)
+## Description
+
+This phpBB extension provides configurable template inserts for other extensions on these template event locations:
+
+* overall_header_navbar_before
+* overall_header_page_body_before
+* overall_footer_page_body_after
 
 ## Requirements
 
