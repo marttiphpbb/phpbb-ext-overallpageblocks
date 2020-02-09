@@ -1,7 +1,7 @@
 {
 	"name": "marttiphpbb/overallpageblocks",
 	"type": "phpbb-extension",
-	"description": "Overall Page Blocks Extension for phpBB 3.2 (helper ext)",
+	"description": "Overall Page Blocks Extension for phpBB (helper ext)",
 	"homepage": "https://github.com/marttiphpbb/phpbb-ext-overallpageblocks",
 	"version": "0.2.0",
 	"time": "2019-02-13",
