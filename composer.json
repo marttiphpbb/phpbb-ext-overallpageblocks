@@ -6,7 +6,7 @@
 	"version": "0.2.0",
 	"time": "2019-02-13",
 	"keywords": ["phpbb", "extension", "menu", "links", "overallpageblocks"],
-	"license": "GPL-2.0",
+	"license": "GPL-2.0-only",
 	"authors": [{
 		"name": "martti",
 		"email": "info@martti.be",

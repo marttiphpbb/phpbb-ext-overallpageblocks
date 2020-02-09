@@ -17,7 +17,7 @@ This phpBB extension provides configurable template inserts for other extensions
 
 ## Quick Install
 
-You can install this on the latest release of phpBB 3.2 by following the steps below:
+You can install this on the latest release of phpBB by following the steps below:
 
 * Create `marttiphpbb/overallpageblocks` in the `ext` directory.
 * Download and unpack the repository into `ext/marttiphpbb/overallpageblocks`
