@@ -2,7 +2,7 @@
 
 /**
 * phpBB Extension - marttiphpbb overallpageblocks
-* @copyright (c) 2019 marttiphpbb <info@martti.be>
+* @copyright (c) 2019 - 2022 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 

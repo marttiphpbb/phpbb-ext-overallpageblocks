@@ -2,7 +2,7 @@
 
 /**
 * phpBB Extension - marttiphpbb overallpageblocks
-* @copyright (c) 2019 marttiphpbb <info@martti.be>
+* @copyright (c) 2019 - 2022 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
@@ -104,7 +104,7 @@ class store
 	public function remove_key(string $extension_name, string $key):void
 	{
 		$this->load();
-		unset($this->items[$extension_name][$key]);
+		unset($this->template_events[$extension_name][$key]);
 
 		if (!$this->transaction)
 		{

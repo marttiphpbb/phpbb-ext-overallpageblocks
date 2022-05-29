@@ -21,11 +21,11 @@ You can install this on the latest release of phpBB by following the steps below
 
 * Create `marttiphpbb/overallpageblocks` in the `ext` directory.
 * Download and unpack the repository into `ext/marttiphpbb/overallpageblocks`
-* Enable `Menu Links` in the ACP at `Customise -> Manage extensions`.
+* Enable `Overall Page Blocks` in the ACP at `Customise -> Manage extensions`.
 
 ## Uninstall
 
-* Disable `Menu Links` in the ACP at `Customise -> Extension Management -> Extensions`.
+* Disable `Overall Page Blocks` in the ACP at `Customise -> Extension Management -> Extensions`.
 * To permanently uninstall, click `Delete Data`. Optionally delete the `/ext/marttiphpbb/overallpageblocks` directory.
 
 ## Support
